@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,7 +43,7 @@ public class ProductController {
 	}
 
 	@PostMapping
-	public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO product) {
+	public ResponseEntity<ProductDTO> createProduct(@Validated @RequestBody ProductDTO product) {
 		ProductDTO persistedProduct = productService.createProduct(product);
 		return new ResponseEntity<ProductDTO>(persistedProduct, HttpStatus.CREATED);
 	}

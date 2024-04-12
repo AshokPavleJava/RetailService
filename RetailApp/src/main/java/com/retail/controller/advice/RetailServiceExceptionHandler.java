@@ -2,6 +2,7 @@ package com.retail.controller.advice;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -25,4 +26,14 @@ public class RetailServiceExceptionHandler {
 		errorResponse.setStatusCode(HttpStatus.BAD_REQUEST.value());
 		return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
 	}
+	
+	@ExceptionHandler(value = MethodArgumentNotValidException.class)
+	public ResponseEntity<CustomErrorResponse> handleMethodArgumentNotValidException(
+			MethodArgumentNotValidException e) {
+		CustomErrorResponse errorResponse = new CustomErrorResponse();
+		errorResponse.setErrorMessage(e.getBindingResult().getFieldError().getDefaultMessage());
+		errorResponse.setStatusCode(HttpStatus.BAD_REQUEST.value());
+		return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+	}
+	
 }
