@@ -31,6 +31,8 @@ public class ApprovalQueue {
 	private String productName;
 	private Double price;
 	private String status;
+	@Column(name = "PREVIOUS_STATUS")
+	private String previousStatus;
 	@Column(name = "POSTED_DATE")
 	private LocalDateTime postedDate;
 	

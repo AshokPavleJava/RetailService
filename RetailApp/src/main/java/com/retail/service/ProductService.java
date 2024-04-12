@@ -8,7 +8,7 @@ import com.retail.dto.ProductDTO;
 
 public interface ProductService {
 
-	List<ProductDTO> getAllProducts();
+	List<ProductDTO> getAllProductsWithActiveStatus();
 
 	List<ProductDTO> searchProducts(String productName, Double minPrice, Double maxPrice, LocalDateTime minPostedDate,
 			LocalDateTime maxPostedDate);

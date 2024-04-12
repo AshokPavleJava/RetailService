@@ -1,7 +1,7 @@
 package com.retail.constants;
 
 public class ProductConstants {
-	public static final String CREATED = "Created";
+	public static final String ACTIVE = "Active";
 	public static final String UPDATED = "Updated";
 	public static final String DELETED = "Deleted";
 	public static final Double TEN_THOUSAND = 10000.0;

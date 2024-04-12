@@ -1,4 +1,4 @@
-package com.retail;
+package com.retail.serviceimpl;
 
 import static org.mockito.Mockito.when;
 
@@ -13,10 +13,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import com.retail.constants.ProductConstants;
 import com.retail.dto.ProductDTO;
 import com.retail.entity.Product;
 import com.retail.repository.ProductRepository;
-import com.retail.serviceimpl.ProductServiceImpl;
 
 public class ProductServiceImplTest {
 
@@ -33,15 +33,15 @@ public class ProductServiceImplTest {
 	
 	@Test
 	void getAllProducts() {
-		when(productRepository.findAll()).thenReturn(getProducts());
-		List<ProductDTO> actualProducts = productService.getAllProducts();
+		when(productRepository.findByStatus(ProductConstants.ACTIVE)).thenReturn(getProducts());
+		List<ProductDTO> actualProducts = productService.getAllProductsWithActiveStatus();
 		Assertions.assertEquals(2, actualProducts.size());
 	}
 	
 	private List<Product> getProducts() {
 		List<Product> products = new ArrayList<>();
-		products.add(new Product(101, "Dressing Table", 4000.0, "Created", LocalDateTime.now()));
-		products.add(new Product(102, "Dining Table", 3000.0, "Updated", LocalDateTime.now()));
+		products.add(new Product(101, "Dressing Table", 4000.0, "Active", LocalDateTime.now()));
+		products.add(new Product(102, "Dining Table", 3000.0, "Active", LocalDateTime.now()));
 		return products;
 	}
 }
